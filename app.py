@@ -64,6 +64,19 @@ def create_app():
     return app
 
 
+@bp.route("/assistant/filter_bullhorn_candidates_with_openai_functions")
+async def filter_bullhorn_candidates_with_openai_functions_get():
+    global frontend_settings
+    logging.debug(f"XXXXXX - filter_bullhorn_candidates_with_openai_functions {frontend_settings}")
+    frontend_settings["ui"]["chat_title"] = "Bullhorn Kandidaten-Suche mittels Functions"
+    frontend_settings["ui"]["chat_description"] = "Finde, filtere und analysiere Kandidaten direkt aus Bullhorn mittels Functions"
+    return await render_template(
+        "index.html",
+        title="Assistant Bullhorn Functions",
+        favicon=app_settings.ui.favicon,
+    )
+
+
 @bp.route("/")
 async def index():
     return await render_template(
@@ -891,6 +904,16 @@ async def ensure_cosmos():
             )
         else:
             return jsonify({"error": "CosmosDB is not working"}), 500
+
+
+@bp.route("/assistant/filter_bullhorn_candidates_with_openai_functions", methods=["POST"])
+async def filter_bullhorn_candidates_with_openai_functions_post():
+    try:
+        return await filter_bullhorn_candidates_with_openai_functions()
+
+    except Exception as e:
+        logging.exception(f"Error in /assistant interaction. e:{e}")
+        return jsonify({"error": str(e)}), 500
 
 
 @bp.route("/assistant", methods=["POST"])

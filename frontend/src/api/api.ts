@@ -3,7 +3,14 @@ import { chatHistorySampleData } from '../constants/chatHistory'
 import { ChatMessage, Conversation, ConversationRequest, CosmosDBHealth, CosmosDBStatus, UserInfo } from './models'
 
 export async function conversationApi(options: ConversationRequest, abortSignal: AbortSignal): Promise<Response> {
-  const response = await fetch('/assistant', {
+  let apiUrl = '/assistant';
+  switch (window.location.pathname) {
+    case '/assistant/filter_bullhorn_candidates_with_openai_functions':
+      apiUrl = '/assistant/filter_bullhorn_candidates_with_openai_functions'
+      break;
+  }
+  console.debug('API-URL', apiUrl, window.location);
+  const response = await fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -18,18 +25,18 @@ export async function conversationApi(options: ConversationRequest, abortSignal:
 
 export async function getUserInfo(): Promise<UserInfo[]> {
   console.log('Using mock data for user info in local environment.', window.location);
- // if (window.location.hostname === 'localhost') {
-    console.log('Using mock data for user info in local environment.')
-    return [
-      {
-        access_token: 'string',
-        expires_on: 'string',
-        id_token: 'string',
-        provider_name: 'string',
-        user_claims: [],
-        user_id: 'string'
-      },
-    ]
+  // if (window.location.hostname === 'localhost') {
+  console.log('Using mock data for user info in local environment.')
+  return [
+    {
+      access_token: 'string',
+      expires_on: 'string',
+      id_token: 'string',
+      provider_name: 'string',
+      user_claims: [],
+      user_id: 'string'
+    },
+  ]
   //}
 
   const response = await fetch('/.auth/me')
