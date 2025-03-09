@@ -11,6 +11,9 @@ from quart import jsonify, request
 from backend.sjc.assistant_filter_bullhorn_candidates_with_functions.assistant import call_azure_logic_app, init_openai_client
 
 
+DEBUG = os.environ.get("DEBUG", "false")
+
+
 async def init_assistant_client():
     try:
         azure_openai_client = await init_openai_client()
@@ -82,8 +85,10 @@ async def assistant_action_bullhorn(azure_openai_client, thread_id, tool_call, r
         logging.info(f"Tool result summary: {summary_message}")
         candidates = tool_result["candidates"]
         full_json_str = json.dumps(tool_result, ensure_ascii=False)
-        with open("./private/bullhorn_candidates.json", "w", encoding="utf-8") as f:
-            f.write(full_json_str)
+
+        if DEBUG.lower() == "true":
+            with open("./bullhorn_candidates.json", "w", encoding="utf-8") as f:
+                f.write(full_json_str)
 
         # **Ergebnis speichern (reduzierte Antwort)**
         await azure_openai_client.beta.threads.runs.submit_tool_outputs(
