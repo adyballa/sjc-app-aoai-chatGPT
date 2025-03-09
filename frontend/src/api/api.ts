@@ -2,20 +2,25 @@ import { chatHistorySampleData } from '../constants/chatHistory'
 
 import { ChatMessage, Conversation, ConversationRequest, CosmosDBHealth, CosmosDBStatus, UserInfo } from './models'
 
-export async function conversationApi(options: ConversationRequest, abortSignal: AbortSignal): Promise<Response> {
-  let apiUrl = '/assistant';
+export async function conversationApi(options: ConversationRequest, abortSignal: AbortSignal, gptProps: { threadId: string, assistantId: string }): Promise<Response> {
+  let apiUrl = '/assistant/filter_bullhorn_candidates_with_openai_context';
   switch (window.location.pathname) {
     case '/assistant/filter_bullhorn_candidates_with_openai_functions':
       apiUrl = '/assistant/filter_bullhorn_candidates_with_openai_functions'
       break;
+    case '/assistant/filter_bullhorn_candidates_with_openai_context':
+      apiUrl = '/assistant/filter_bullhorn_candidates_with_openai_context'
+      break;
   }
-  console.debug('API-URL', apiUrl, window.location);
+  console.debug('API-URL', apiUrl, window.location, gptProps);
   const response = await fetch(apiUrl, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
+      thread_id: gptProps.threadId,
+      assistant_id: gptProps.assistantId,
       content: options.messages[options.messages.length - 1]?.content || "Hallo!"
     }),
     signal: abortSignal

@@ -65,6 +65,7 @@ const Chat = () => {
   const [errorMsg, setErrorMsg] = useState<ErrorMessage | null>()
   const [logo, setLogo] = useState('')
   const [answerId, setAnswerId] = useState<string>('')
+  const [gptProps, setGptProps] = useState({ threadId: '', assistantId: '' })
 
   const errorDialogContentProps = {
     type: DialogType.close,
@@ -225,7 +226,7 @@ const Chat = () => {
 
     let result = {} as ChatResponse
     try {
-      const response = await conversationApi(request, abortController.signal)
+      const response = await conversationApi(request, abortController.signal, gptProps)
       if (response?.body) {
         const reader = response.body.getReader()
 
@@ -242,6 +243,10 @@ const Chat = () => {
               if (obj !== '' && obj !== '{}') {
                 runningText += obj
                 result = JSON.parse(runningText)
+                gptProps.threadId = result.id
+                gptProps.assistantId = result.assistant_id;
+                setGptProps({ ...gptProps })
+
                 if (result.choices?.length > 0) {
                   result.choices[0].messages.forEach(msg => {
                     msg.id = result.id

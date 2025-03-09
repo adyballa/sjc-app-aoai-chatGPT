@@ -72,6 +72,7 @@ export type ChatResponseChoice = {
 
 export type ChatResponse = {
   id: string
+  assistant_id: string
   model: string
   created: number
   object: ChatCompletionType

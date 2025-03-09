@@ -1,0 +1,827 @@
+{
+    "entity": "Candidate",
+    "entityMetaUrl": "https://rest70.bullhornstaffing.com/rest-services/4vis04/meta/Candidate?fields=*",
+    "label": "Kandidat",
+    "dateLastModified": "1740949728936",
+    "fields": [
+        {
+            "name": "id",
+            "type": "ID",
+            "dataType": "Integer",
+            "label": "ID"
+        },
+        {
+            "name": "firstName",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 50,
+            "confidential": false,
+            "label": "Vorname",
+            "hideFromSearch": false
+        },
+        {
+            "name": "lastName",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 50,
+            "confidential": false,
+            "label": "Nachname",
+            "hideFromSearch": false
+        },
+        {
+            "name": "salary",
+            "type": "SCALAR",
+            "dataType": "BigDecimal",
+            "confidential": false,
+            "label": "Aktueller variabler Anteil",
+            "hideFromSearch": false
+        },
+        {
+            "name": "primarySkills",
+            "type": "TO_MANY",
+            "confidential": false,
+            "label": "Erforderliche Fähigkeiten",
+            "optionsType": "Skill",
+            "optionsUrl": "https://rest70.bullhornstaffing.com/rest-services/4vis04/options/Skill",
+            "hideFromSearch": false,
+            "associatedEntity": {
+                "entity": "Skill",
+                "entityMetaUrl": "https://rest70.bullhornstaffing.com/rest-services/4vis04/meta/Skill?fields=*",
+                "label": "Skill",
+                "dateLastModified": "1740949729199",
+                "fields": [
+                    {
+                        "name": "id",
+                        "type": "ID",
+                        "dataType": "Integer",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "name",
+                        "type": "SCALAR",
+                        "dataType": "String",
+                        "maxLength": 100,
+                        "confidential": false,
+                        "label": "Name",
+                        "hideFromSearch": false
+                    }
+                ]
+            }
+        },
+        {
+            "name": "secondarySkills",
+            "type": "TO_MANY",
+            "confidential": false,
+            "label": "Sekundäre Fähigkeiten",
+            "optionsType": "Skill",
+            "optionsUrl": "https://rest70.bullhornstaffing.com/rest-services/4vis04/options/Skill",
+            "hideFromSearch": false,
+            "associatedEntity": {
+                "entity": "Skill",
+                "entityMetaUrl": "https://rest70.bullhornstaffing.com/rest-services/4vis04/meta/Skill?fields=*",
+                "label": "Skill",
+                "dateLastModified": "1740949729199",
+                "fields": [
+                    {
+                        "name": "id",
+                        "type": "ID",
+                        "dataType": "Integer",
+                        "label": "ID"
+                    },
+                    {
+                        "name": "name",
+                        "type": "SCALAR",
+                        "dataType": "String",
+                        "maxLength": 100,
+                        "confidential": false,
+                        "label": "Name",
+                        "hideFromSearch": false
+                    }
+                ]
+            }
+        },
+        {
+            "name": "address",
+            "type": "COMPOSITE",
+            "dataType": "Address",
+            "confidential": false,
+            "label": "Adresse",
+            "hideFromSearch": false,
+            "fields": [
+                {
+                    "name": "address1",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 100,
+                    "confidential": false,
+                    "label": "Adresse",
+                    "hideFromSearch": false
+                },
+                {
+                    "name": "address2",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 100,
+                    "confidential": false,
+                    "label": "Address2",
+                    "hideFromSearch": false
+                },
+                {
+                    "name": "city",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 100,
+                    "confidential": false,
+                    "label": "Stadt",
+                    "hideFromSearch": false
+                },
+                {
+                    "name": "countryCode",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 0
+                },
+                {
+                    "name": "countryID",
+                    "type": "SCALAR",
+                    "dataType": "Integer",
+                    "confidential": false,
+                    "label": "Land",
+                    "optionsType": "Country",
+                    "optionsUrl": "https://rest70.bullhornstaffing.com/rest-services/4vis04/options/Country",
+                    "hideFromSearch": false
+                },
+                {
+                    "name": "countryName",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 0
+                },
+                {
+                    "name": "state",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 100,
+                    "confidential": false,
+                    "label": "Staat",
+                    "optionsType": "StateText",
+                    "optionsUrl": "https://rest70.bullhornstaffing.com/rest-services/4vis04/options/StateText",
+                    "options": [
+                        {
+                            "value": "Avon",
+                            "label": "Avon"
+                        },
+                        {
+                            "value": "Bedfordshire",
+                            "label": "Bedfordshire"
+                        },
+                        {
+                            "value": "Berkshire",
+                            "label": "Berkshire"
+                        },
+                        {
+                            "value": "Borders",
+                            "label": "Borders"
+                        },
+                        {
+                            "value": "Buckinghamshire",
+                            "label": "Buckinghamshire"
+                        },
+                        {
+                            "value": "Cambridgeshire",
+                            "label": "Cambridgeshire"
+                        },
+                        {
+                            "value": "Central",
+                            "label": "Central"
+                        },
+                        {
+                            "value": "Cheshire",
+                            "label": "Cheshire"
+                        },
+                        {
+                            "value": "Cleveland",
+                            "label": "Cleveland"
+                        },
+                        {
+                            "value": "Clwyd",
+                            "label": "Clwyd"
+                        },
+                        {
+                            "value": "Cornwall",
+                            "label": "Cornwall"
+                        },
+                        {
+                            "value": "County Antrim",
+                            "label": "County Antrim"
+                        },
+                        {
+                            "value": "County Armagh",
+                            "label": "County Armagh"
+                        },
+                        {
+                            "value": "County Down",
+                            "label": "County Down"
+                        },
+                        {
+                            "value": "County Fermanagh",
+                            "label": "County Fermanagh"
+                        },
+                        {
+                            "value": "County Londonderry",
+                            "label": "County Londonderry"
+                        },
+                        {
+                            "value": "County Tyrone",
+                            "label": "County Tyrone"
+                        },
+                        {
+                            "value": "Cumbria",
+                            "label": "Cumbria"
+                        },
+                        {
+                            "value": "Derbyshire",
+                            "label": "Derbyshire"
+                        },
+                        {
+                            "value": "Devon",
+                            "label": "Devon"
+                        },
+                        {
+                            "value": "Dorset",
+                            "label": "Dorset"
+                        },
+                        {
+                            "value": "Dumfries and Galloway",
+                            "label": "Dumfries and Galloway"
+                        },
+                        {
+                            "value": "Durham",
+                            "label": "Durham"
+                        },
+                        {
+                            "value": "Dyfed",
+                            "label": "Dyfed"
+                        },
+                        {
+                            "value": "East Sussex",
+                            "label": "East Sussex"
+                        },
+                        {
+                            "value": "Essex",
+                            "label": "Essex"
+                        },
+                        {
+                            "value": "Fife",
+                            "label": "Fife"
+                        },
+                        {
+                            "value": "Gloucestershire",
+                            "label": "Gloucestershire"
+                        },
+                        {
+                            "value": "Grampian",
+                            "label": "Grampian"
+                        },
+                        {
+                            "value": "Greater Manchester",
+                            "label": "Greater Manchester"
+                        },
+                        {
+                            "value": "Gwent",
+                            "label": "Gwent"
+                        },
+                        {
+                            "value": "Gwynedd County",
+                            "label": "Gwynedd County"
+                        },
+                        {
+                            "value": "Hampshire",
+                            "label": "Hampshire"
+                        },
+                        {
+                            "value": "Herefordshire",
+                            "label": "Herefordshire"
+                        },
+                        {
+                            "value": "Hertfordshire",
+                            "label": "Hertfordshire"
+                        },
+                        {
+                            "value": "Highlands and Islands",
+                            "label": "Highlands and Islands"
+                        },
+                        {
+                            "value": "Humberside",
+                            "label": "Humberside"
+                        },
+                        {
+                            "value": "Isle of Wight",
+                            "label": "Isle of Wight"
+                        },
+                        {
+                            "value": "Kent",
+                            "label": "Kent"
+                        },
+                        {
+                            "value": "Lancashire",
+                            "label": "Lancashire"
+                        },
+                        {
+                            "value": "Leicestershire",
+                            "label": "Leicestershire"
+                        },
+                        {
+                            "value": "Lincolnshire",
+                            "label": "Lincolnshire"
+                        },
+                        {
+                            "value": "Lothian",
+                            "label": "Lothian"
+                        },
+                        {
+                            "value": "Merseyside",
+                            "label": "Merseyside"
+                        },
+                        {
+                            "value": "Mid Glamorgan",
+                            "label": "Mid Glamorgan"
+                        },
+                        {
+                            "value": "Norfolk",
+                            "label": "Norfolk"
+                        },
+                        {
+                            "value": "North Yorkshire",
+                            "label": "North Yorkshire"
+                        },
+                        {
+                            "value": "Northamptonshire",
+                            "label": "Northamptonshire"
+                        },
+                        {
+                            "value": "Northumberland",
+                            "label": "Northumberland"
+                        },
+                        {
+                            "value": "Nottinghamshire",
+                            "label": "Nottinghamshire"
+                        },
+                        {
+                            "value": "Oxfordshire",
+                            "label": "Oxfordshire"
+                        },
+                        {
+                            "value": "Powys",
+                            "label": "Powys"
+                        },
+                        {
+                            "value": "Rutland",
+                            "label": "Rutland"
+                        },
+                        {
+                            "value": "Shropshire",
+                            "label": "Shropshire"
+                        },
+                        {
+                            "value": "Somerset",
+                            "label": "Somerset"
+                        },
+                        {
+                            "value": "South Glamorgan",
+                            "label": "South Glamorgan"
+                        },
+                        {
+                            "value": "South Yorkshire",
+                            "label": "South Yorkshire"
+                        },
+                        {
+                            "value": "Staffordshire",
+                            "label": "Staffordshire"
+                        },
+                        {
+                            "value": "Strathclyde",
+                            "label": "Strathclyde"
+                        },
+                        {
+                            "value": "Suffolk",
+                            "label": "Suffolk"
+                        },
+                        {
+                            "value": "Surrey",
+                            "label": "Surrey"
+                        },
+                        {
+                            "value": "Tayside",
+                            "label": "Tayside"
+                        },
+                        {
+                            "value": "Tyne and Wear",
+                            "label": "Tyne and Wear"
+                        },
+                        {
+                            "value": "Warwickshire",
+                            "label": "Warwickshire"
+                        },
+                        {
+                            "value": "West Glamorgan",
+                            "label": "West Glamorgan"
+                        },
+                        {
+                            "value": "West Midlands",
+                            "label": "West Midlands"
+                        },
+                        {
+                            "value": "West Sussex",
+                            "label": "West Sussex"
+                        },
+                        {
+                            "value": "West Yorkshire",
+                            "label": "West Yorkshire"
+                        },
+                        {
+                            "value": "Wiltshire",
+                            "label": "Wiltshire"
+                        },
+                        {
+                            "value": "Worcestershire",
+                            "label": "Worcestershire"
+                        },
+                        {
+                            "value": "CARLOW",
+                            "label": "CARLOW"
+                        },
+                        {
+                            "value": "CAVAN",
+                            "label": "CAVAN"
+                        },
+                        {
+                            "value": "CORK",
+                            "label": "CORK"
+                        },
+                        {
+                            "value": "DONEGAL",
+                            "label": "DONEGAL"
+                        },
+                        {
+                            "value": "DUBLIN",
+                            "label": "DUBLIN"
+                        },
+                        {
+                            "value": "DUBLIN 1",
+                            "label": "DUBLIN 1"
+                        },
+                        {
+                            "value": "DUBLIN 2",
+                            "label": "DUBLIN 2"
+                        },
+                        {
+                            "value": "DUBLIN 3",
+                            "label": "DUBLIN 3"
+                        },
+                        {
+                            "value": "DUBLIN 4",
+                            "label": "DUBLIN 4"
+                        },
+                        {
+                            "value": "DUBLIN 5",
+                            "label": "DUBLIN 5"
+                        },
+                        {
+                            "value": "DUBLIN 6",
+                            "label": "DUBLIN 6"
+                        },
+                        {
+                            "value": "DUBLIN 6W",
+                            "label": "DUBLIN 6W"
+                        },
+                        {
+                            "value": "DUBLIN 7",
+                            "label": "DUBLIN 7"
+                        },
+                        {
+                            "value": "DUBLIN 8",
+                            "label": "DUBLIN 8"
+                        },
+                        {
+                            "value": "DUBLIN 9",
+                            "label": "DUBLIN 9"
+                        },
+                        {
+                            "value": "DUBLIN 10",
+                            "label": "DUBLIN 10"
+                        },
+                        {
+                            "value": "DUBLIN 11",
+                            "label": "DUBLIN 11"
+                        },
+                        {
+                            "value": "DUBLIN 12",
+                            "label": "DUBLIN 12"
+                        },
+                        {
+                            "value": "DUBLIN 13",
+                            "label": "DUBLIN 13"
+                        },
+                        {
+                            "value": "DUBLIN 14",
+                            "label": "DUBLIN 14"
+                        },
+                        {
+                            "value": "DUBLIN 15",
+                            "label": "DUBLIN 15"
+                        },
+                        {
+                            "value": "DUBLIN 16",
+                            "label": "DUBLIN 16"
+                        },
+                        {
+                            "value": "DUBLIN 17",
+                            "label": "DUBLIN 17"
+                        },
+                        {
+                            "value": "DUBLIN 18",
+                            "label": "DUBLIN 18"
+                        },
+                        {
+                            "value": "DUBLIN 20",
+                            "label": "DUBLIN 20"
+                        },
+                        {
+                            "value": "DUBLIN 22",
+                            "label": "DUBLIN 22"
+                        },
+                        {
+                            "value": "GALWAY",
+                            "label": "GALWAY"
+                        },
+                        {
+                            "value": "KERRY",
+                            "label": "KERRY"
+                        },
+                        {
+                            "value": "KILDARE",
+                            "label": "KILDARE"
+                        },
+                        {
+                            "value": "KILKENNY",
+                            "label": "KILKENNY"
+                        },
+                        {
+                            "value": "LAOIS",
+                            "label": "LAOIS"
+                        },
+                        {
+                            "value": "LEITRIM",
+                            "label": "LEITRIM"
+                        },
+                        {
+                            "value": "LIMERICK",
+                            "label": "LIMERICK"
+                        },
+                        {
+                            "value": "LONGFORD",
+                            "label": "LONGFORD"
+                        },
+                        {
+                            "value": "LOUTH",
+                            "label": "LOUTH"
+                        },
+                        {
+                            "value": "MAYO",
+                            "label": "MAYO"
+                        },
+                        {
+                            "value": "MEATH",
+                            "label": "MEATH"
+                        },
+                        {
+                            "value": "MONAGHAN",
+                            "label": "MONAGHAN"
+                        },
+                        {
+                            "value": "OFFALY",
+                            "label": "OFFALY"
+                        },
+                        {
+                            "value": "ROSCOMMON",
+                            "label": "ROSCOMMON"
+                        },
+                        {
+                            "value": "SLIGO",
+                            "label": "SLIGO"
+                        },
+                        {
+                            "value": "TIPPERARY",
+                            "label": "TIPPERARY"
+                        },
+                        {
+                            "value": "WATERFORD",
+                            "label": "WATERFORD"
+                        },
+                        {
+                            "value": "WESTMEATH",
+                            "label": "WESTMEATH"
+                        },
+                        {
+                            "value": "WEXFORD",
+                            "label": "WEXFORD"
+                        },
+                        {
+                            "value": "WICKLOW",
+                            "label": "WICKLOW"
+                        }
+                    ],
+                    "hideFromSearch": false
+                },
+                {
+                    "name": "timezone",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 0
+                },
+                {
+                    "name": "zip",
+                    "type": "SCALAR",
+                    "dataType": "String",
+                    "maxLength": 15,
+                    "confidential": false,
+                    "label": "Postleitzahl",
+                    "hideFromSearch": false
+                }
+            ]
+        },
+        {
+            "name": "dateOfBirth",
+            "type": "SCALAR",
+            "dataType": "Timestamp",
+            "confidential": false,
+            "label": "Geburtsdatum",
+            "hideFromSearch": false
+        },
+        {
+            "name": "certifications",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 2147483647,
+            "confidential": false,
+            "label": "Anforderung Typ",
+            "options": [
+                {
+                    "value": "CCM",
+                    "label": "CCM"
+                },
+                {
+                    "value": "CFA",
+                    "label": "CFA"
+                },
+                {
+                    "value": "Chartered Accountant",
+                    "label": "Chartered Accountant"
+                },
+                {
+                    "value": "CMA",
+                    "label": "CMA"
+                },
+                {
+                    "value": "CAN",
+                    "label": "CAN"
+                },
+                {
+                    "value": "CNE",
+                    "label": "CNE"
+                },
+                {
+                    "value": "CPA",
+                    "label": "CPA"
+                },
+                {
+                    "value": "MCE",
+                    "label": "MCE"
+                },
+                {
+                    "value": "MCSE",
+                    "label": "MCSE"
+                },
+                {
+                    "value": "MCSE",
+                    "label": "MCSE"
+                },
+                {
+                    "value": "MS SQL Server Administration",
+                    "label": "MS SQL Server Administration"
+                },
+                {
+                    "value": "Notary Public",
+                    "label": "Notary Public"
+                },
+                {
+                    "value": "Oracle",
+                    "label": "Oracle"
+                },
+                {
+                    "value": "Paralegal",
+                    "label": "Paralegal"
+                },
+                {
+                    "value": "Series 63",
+                    "label": "Series 63"
+                },
+                {
+                    "value": "Series 7",
+                    "label": "Series 7"
+                },
+                {
+                    "value": "Unix system Administration",
+                    "label": "Unix system Administration"
+                },
+                {
+                    "value": "Unix System Programming",
+                    "label": "Unix System Programming"
+                }
+            ],
+            "hideFromSearch": false
+        },
+        {
+            "name": "degreeList",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 2147483647,
+            "confidential": false,
+            "label": "Bildungsgrad",
+            "hideFromSearch": false
+        },
+        {
+            "name": "educationDegree",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 2147483647,
+            "confidential": false,
+            "label": "Abschluss",
+            "hideFromSearch": false
+        },
+        {
+            "name": "dateAvailable",
+            "type": "SCALAR",
+            "dataType": "Timestamp",
+            "confidential": false,
+            "label": "Verfügbar ab",
+            "hideFromSearch": false
+        },
+        {
+            "name": "desiredLocations",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 2147483647,
+            "confidential": false,
+            "label": "Gewünschte Standorte",
+            "hideFromSearch": false
+        },
+        {
+            "name": "customText1",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 100,
+            "confidential": false,
+            "label": "Benutzerdefinierter Text",
+            "hideFromSearch": false
+        },
+        {
+            "name": "customText2",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 100,
+            "confidential": false,
+            "label": "Newsletter",
+            "options": [
+                {
+                    "value": "Ja",
+                    "label": "Ja"
+                },
+                {
+                    "value": "Nein",
+                    "label": "Nein"
+                }
+            ],
+            "hideFromSearch": false
+        },
+        {
+            "name": "customText3",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 100,
+            "confidential": false,
+            "label": "customText3",
+            "hideFromSearch": false
+        },
+        {
+            "name": "comments",
+            "type": "SCALAR",
+            "dataType": "String",
+            "maxLength": 2147483647,
+            "confidential": false,
+            "label": "Allgemeine Kommentare",
+            "hideFromSearch": false
+        }
+    ]
+}

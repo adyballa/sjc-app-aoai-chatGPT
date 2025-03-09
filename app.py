@@ -35,9 +35,12 @@ from backend.utils import (
     convert_to_pf_format,
     format_pf_non_streaming_response,
 )
-from backend.sjc.filter_bullhorn_candidates import (
-    filter_bullhorn_candidates_with_openai_functions,
+from backend.sjc.assistant_filter_bullhorn_candidates_with_functions.assistant import (
+    filter_bullhorn_candidates_with_functions,
     USER_AGENT
+)
+from backend.sjc.assistant_filter_bullhorn_candidates_with_context.assistant import (
+    filter_bullhorn_candidates_with_context
 )
 
 bp = Blueprint("routes", __name__, static_folder="static",
@@ -67,7 +70,6 @@ def create_app():
 @bp.route("/assistant/filter_bullhorn_candidates_with_openai_functions")
 async def filter_bullhorn_candidates_with_openai_functions_get():
     global frontend_settings
-    logging.debug(f"XXXXXX - filter_bullhorn_candidates_with_openai_functions {frontend_settings}")
     frontend_settings["ui"]["chat_title"] = "Bullhorn Kandidaten-Suche mittels Functions"
     frontend_settings["ui"]["chat_description"] = "Finde, filtere und analysiere Kandidaten direkt aus Bullhorn mittels Functions"
     return await render_template(
@@ -78,11 +80,15 @@ async def filter_bullhorn_candidates_with_openai_functions_get():
 
 
 @bp.route("/")
-async def index():
+@bp.route("/assistant/filter_bullhorn_candidates_with_openai_context")
+async def filter_bullhorn_candidates_with_openai_context_get():
+    global frontend_settings
+    frontend_settings["ui"]["chat_title"] = "Bullhorn Kandidaten-Suche mittels Context"
+    frontend_settings["ui"]["chat_description"] = "Starte mit einer Kandidatensuche, z. B. „Finde Manager aus der Solar-Branche“, und filtere anschließend die Ergebnisse, z. B. „Zeige mir die jüngsten 6 Kandidaten“."
     return await render_template(
         "index.html",
-        title=app_settings.ui.title,
-        favicon=app_settings.ui.favicon
+        title="Assistant Bullhorn Context",
+        favicon=app_settings.ui.favicon,
     )
 
 
@@ -909,20 +915,20 @@ async def ensure_cosmos():
 @bp.route("/assistant/filter_bullhorn_candidates_with_openai_functions", methods=["POST"])
 async def filter_bullhorn_candidates_with_openai_functions_post():
     try:
-        return await filter_bullhorn_candidates_with_openai_functions()
+        return await filter_bullhorn_candidates_with_functions()
 
     except Exception as e:
-        logging.exception(f"Error in /assistant interaction. e:{e}")
+        logging.exception(f"Error in /assistant/filter_bullhorn_candidates_with_openai_functions interaction. e:{e}")
         return jsonify({"error": str(e)}), 500
 
 
-@bp.route("/assistant", methods=["POST"])
-async def assistant_interaction():
+@bp.route("/assistant/filter_bullhorn_candidates_with_openai_context", methods=["POST"])
+async def filter_bullhorn_candidates_with_openai_context_post():
     try:
-        return await filter_bullhorn_candidates_with_openai_functions()
+        return await filter_bullhorn_candidates_with_context()
 
     except Exception as e:
-        logging.exception(f"Error in /assistant interaction. e:{e}")
+        logging.exception(f"Error in /assistant/filter_bullhorn_candidates_with_openai_context interaction. e:{e}")
         return jsonify({"error": str(e)}), 500
 
 

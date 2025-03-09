@@ -10,7 +10,7 @@ from backend.settings import app_settings, MINIMUM_SUPPORTED_AZURE_OPENAI_PREVIE
 from quart import jsonify, request
 
 
-USER_AGENT = "GitHubSampleWebApp/AsyncAzureOpenAI/1.0.0"
+USER_AGENT = "SJC/AsyncAzureOpenAI/1.0.0"
 
 BULLHORN_RESULTS = {}
 THREAD_ID = None
@@ -472,7 +472,7 @@ async def wait_for_run_completion(azure_openai_client, thread_id, run_id, timeou
         await asyncio.sleep(2)
 
 
-async def filter_bullhorn_candidates_with_openai_functions():
+async def filter_bullhorn_candidates_with_functions():
     request_json = await request.get_json()
     user_input = request_json.get(
         "content", "Bitte durchsuche Bullhorn nach Managern aus der Solar-Branche.")
@@ -498,12 +498,6 @@ async def filter_bullhorn_candidates_with_openai_functions():
 
     # Warten, bis der Run abgeschlossen ist oder eine Aktion erforderlich ist
     run = await wait_for_run_completion(azure_openai_client, thread.id, run.id)
-
-    if run.status == 'requires_action':
-        await assistant_action_handler(azure_openai_client, thread.id, run)
-
-        # Erneut auf Abschluss warten
-        run = await wait_for_run_completion(azure_openai_client, thread.id, run.id)
 
     if run.status == 'completed':
         messages = await azure_openai_client.beta.threads.messages.list(thread_id=thread.id)
